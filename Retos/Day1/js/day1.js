@@ -2000,6 +2000,7 @@ let measurements = [
     10397,
     10406,
     10415];
+
 const getValueStep1 = () => {
     calculateLarger(measurements, "step1")
 }
@@ -2018,8 +2019,6 @@ function calculateLarger(elements, output) {
         }
     });
     let inputAswer = document.getElementById(output)
-    let ol = createList(increased);
-
     inputAswer.innerHTML = `<p>De un total de ${elements.length}</p>
     <p>Incrementaron ${increased.length}</p>
     <p>Decrementaron ${decreased.length}</p>

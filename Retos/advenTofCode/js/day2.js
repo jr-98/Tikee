@@ -1029,7 +1029,7 @@ function calculateNewPosition() {
     let v_displacement = 0;
     let aim = 0;
     let possition = 0
-    comands.map((e, index) => {
+    comands.map(e => {
         let data = e.split(' ')
         let comand = data[0]
         let value = parseInt(data[1])

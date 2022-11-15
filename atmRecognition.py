@@ -39,13 +39,11 @@ class InstanceModel:
             [testX, x, le] = InstanceModel.transformToTensor(X)
 
             # Fin load model
-            modelo = 'model/modelAtmRecognitionnLR1.h5'
-            pesos_modelo = 'model/modelAtmRecognitionPesosLR1.h5'
+            modelo = 'modelAtmRecognitionnLR1.h5'
+            pesos_modelo = 'modelAtmRecognitionPesosLR1.h5'
             atm = load_model(modelo)
             atm.load_weights(pesos_modelo)
-
             predIdxs = atm.predict(testX)
-            print(predIdxs)
             if (predIdxs[0][1] > 0.01):
                 accuracy_score = predIdxs[0][0]
                 resp = [0, accuracy_score, 'no_atm']
@@ -58,6 +56,3 @@ class InstanceModel:
             print(f'Ha ocurrido un error\n {e}')
         else:
             print('No ha ocurrido ningún error')
-
-url = r'C:\Users\jr-98\Documents\Kradac\Tikee\modelos_reconocimiento_cajeros\imgatm\no_atm\NO_ATM_64.jpg'
-InstanceModel.atmRecongnition(url)

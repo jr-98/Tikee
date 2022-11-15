@@ -13,16 +13,11 @@ app = Flask(__name__)
 def hello_world():
     return "<h1>ATM recognition</h1>"
 
-
-
-@app.route("/model",methods=['GET','POST'])
+@app.route("/model",methods=['POST'])
 def atm_recognition():
-    print('Entre Fn')
     if request.method =='POST':
-        print('Entre Post')
         file = request.files['file']
         if file and allowed_file(file.filename):
-            print('Entre API')
             response = InstanceModel.atmRecongnition(file)
             return f"<h2>{response}</h2>"
 

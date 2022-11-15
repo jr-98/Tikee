@@ -502,12 +502,43 @@ var bingoTables = [
     28, 96, 37, 65, 57,
     53, 79, 89, 32, 14,
     55, 63, 50, 7, 62,
-]]
+]
+// var numberBingo = [7, 4, 9, 5, 11, 17, 23, 2, 0, 14, 21, 24, 10, 16, 13, 6, 15, 25, 12, 22, 18, 20, 8, 19, 3, 26, 1]
+// var bingoTables = [
+//     22, 13, 17, 11, 0,
+//     8, 2, 23, 4, 24,
+//     21, 9, 14, 16, 7,
+//     6, 10, 3, 18, 5,
+//     1, 12, 20, 15, 19,
+//     3, 15, 0, 2, 22,
+//     9, 18, 13, 17, 5,
+//     19, 8, 7, 25, 23,
+//     20, 11, 10, 24, 4,
+//     14, 21, 16, 12, 6,
+//     14, 21, 17, 24, 4,
+//     10, 16, 15, 9, 19,
+//     18, 8, 23, 26, 20,
+//     22, 11, 13, 6, 5,
+//     2, 0, 12, 3, 7,
+// ]
+var tables = createTables(bingoTables)
+
 function BingoPlay() {
-    var tables = createTables(bingoTables)
-    var bingo = bingoFn(tables)
+    var bingo = bingoFn(tables, 5, 0)
+    console.log("🚀 ~ file: day4.js ~ line 528 ~ BingoPlay ~ bingo", bingo)
+    var bingoR4esult = bingo && bingo[0]
+    var bingoRes = determianteResultFn(bingoR4esult[3], bingoR4esult[0])
     var inputAswer = document.getElementById('step1_d4')
-    inputAswer.innerHTML = `<p>Puntuaion final ${bingo}<p>`
+    inputAswer.innerHTML = `<p>Puntuaion final ${bingoRes}<p>`
+}
+function BingoPlay2() {
+    var bingo = bingoFn(tables, 5, 0)
+    console.log("🚀 ~ file: day4.js ~ line 535 ~ BingoPlay2 ~ bingo", bingo)
+    var bingoR4esult = bingo && bingo[bingo.length - 1]
+    var taleResult = bingoR4esult[1]
+    var bingoRes = determianteResultFn(taleResult[taleResult.length - 1], bingoR4esult[0])
+    var inputAswer = document.getElementById('step2_d4')
+    inputAswer.innerHTML = `<p>Puntuaion final ${bingoRes}<p>`
 }
 
 function createTables(array) {
@@ -536,34 +567,35 @@ function createTables(array) {
     currentPos += 25
     return tables
 }
+
 var stateBingo = false
-function bingoFn(tables) {
-    var bingo = 0
-    var bingoR4esult = []
-    var bingoRes = []
-    var bingoRandomNumber = 5
+
+function bingoFn(tables, bingoCurrentNumber, bingoLastNumber) {
+    var bingo = []
     for (var i = 0; i < numberBingo.length; i += 5) {
-        var bingoNumbersSelected = bingoNumbersSelectedFn(bingoRandomNumber)
+        var bingoNumbersSelected = bingoNumbersSelectedFn(bingoCurrentNumber, bingoLastNumber)
         for (var j = 0; j < tables.length; j++) {
             var tableNomal = tables[j]
-            var tableInverse = transformData(tables[j])
-            bingo = bingoSimulate(j, tableNomal, tableInverse, bingoNumbersSelected, j)
-            if (!stateBingo && bingo) {
-                stateBingo = true
-                bingoR4esult = bingo
-                console.log(bingo)
-                break
+            bingo = bingoSimulate(tableNomal, bingoNumbersSelected, j)
+            if (bingo.length > 1) {
+                if (tables.length === 1) {
+                    break
+                } else {
+                    return bingo
+                }
             }
         }
-        bingoRandomNumber += 5
+        if (tables.length > 1) {
+            bingoCurrentNumber += 5
+            bingoLastNumber += 5
+        }
+
     }
-    console.log(bingoR4esult)
-    bingoRes = determianteResultFn(bingoR4esult[2], bingoR4esult[1])
-    return bingoRes
 }
-function bingoNumbersSelectedFn(BingoRandomNumber) {
+
+function bingoNumbersSelectedFn(BingoCurrentNumber, BingoLastNumber) {
     var bingoNumbersSelected = []
-    for (var i = 0; i < BingoRandomNumber; i++) {
+    for (var i = BingoLastNumber; i < BingoCurrentNumber; i++) {
         bingoNumbersSelected.push(numberBingo[i])
     }
     return bingoNumbersSelected
@@ -583,35 +615,32 @@ function transformData(array) {
     }
     return pos
 }
-function bingoSimulate(i, tableNomal, tableInverse, bingoNumbersSelected, table) {
-    var bingoState = 0
-    var bingoValue
+function bingoSimulate(tableNomal, bingoNumbersSelected, table) {
     var bingoH = []
-    var bingoV = []
-    var bingoHAux = []
-    var bingoVAux = []
+    var verificartorH, verificartorV
+    var response = []
     var bingoNumber = 0
+    var couterResponse = 0
     for (var i = 0; i < bingoNumbersSelected.length; i++) {
-        bingoHAux = []
-        bingoVAux = []
+        verificartorH = 0
+        verificartorV = 0
+        bingoNumber = bingoNumbersSelected[i]
         for (var j = 0; j < tableNomal.length; j++) {
-            bingoNumber = bingoNumbersSelected[i]
-            bingoV = tableInverse[j]
             bingoH = tableNomal[j]
-            for (var k = 0; k < tableNomal.length; k++) {
-                bingoHAux = bingoH.filter(b => b !== bingoNumber)
-                bingoVAux = bingoV.filter(b => b !== bingoNumber)
-                if ((bingoHAux.length === 0 || bingoVAux.length === 0)) {
-                    bingoValue = bingoNumbersSelected[i]
-                    bingoState++
-                    return [bingoState, bingoValue, tableNomal, table]
-                }
+            var indexArrH = bingoH.indexOf(bingoNumber)
+            indexArrH === -1 ? tableNomal[j] = bingoH : tableNomal[j].splice(indexArrH, 1, 0)
+            var tableInverse = transformData(tableNomal)
+            verificartorH += tableNomal[j].reduce((a, b) => a + b, 0)
+            verificartorV += tableInverse[j].reduce((a, b) => a + b, 0);
+            if (verificartorH === 0 || verificartorV === 0) {
+                response.push([bingoNumber, tables, table, tableNomal])
+                tables.splice(table, 1)
+                couterResponse++
+                break
             }
-            tableNomal[j] = bingoHAux
-            tableInverse[j] = bingoVAux
         }
     }
-    return null
+    return response
 }
 function determianteResultFn(table, bingoLastNumber) {
     var sum = 0
@@ -625,6 +654,5 @@ function determianteResultFn(table, bingoLastNumber) {
             }
         }
     }
-    console.log(sum * bingoLastNumber)
     return sum * bingoLastNumber
 }

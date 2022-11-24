@@ -49,18 +49,18 @@ class InstanceModel:
                 accuracy_score = predIdxs[0][0]
                 resp = {
                     "type": 0,
-                    "accuracy_score": accuracy_score,
+                    "accuracy_score": f'{accuracy_score}',
                     "tag_result": 'no_atm'
                 }
-                return resp
+                return json.dumps(resp)
             else:
                 accuracy_score = predIdxs[0][0]
                 resp = {
                     "type": 1,
-                    "accuracy_score": accuracy_score,
+                    "accuracy_score": f'{accuracy_score}',
                     "tag_result": 'atm'
                 }
-                return resp
+                return json.dumps(resp)
         except Exception as e:
             print(f'Ha ocurrido un error\n {e}')
         else:

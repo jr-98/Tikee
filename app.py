@@ -20,5 +20,3 @@ def atm_recognition():
         if file and allowed_file(file.filename):
             response = InstanceModel.atmRecongnition(file)
             return response
-
-

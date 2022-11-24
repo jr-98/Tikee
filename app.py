@@ -19,6 +19,6 @@ def atm_recognition():
         file = request.files['file']
         if file and allowed_file(file.filename):
             response = InstanceModel.atmRecongnition(file)
-            return f"<h2>{response}</h2>"
+            return response
 
 

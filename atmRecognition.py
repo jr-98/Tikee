@@ -46,11 +46,19 @@ class InstanceModel:
             predIdxs = atm.predict(testX)
             if (predIdxs[0][1] > 0.01):
                 accuracy_score = predIdxs[0][0]
-                resp = [0, accuracy_score, 'no_atm']
+                resp = {
+                    "type": 0,
+                    "accuracy_score": accuracy_score,
+                    "tag_result": 'no_atm'
+                }
                 return resp
             else:
                 accuracy_score = predIdxs[0][0]
-                resp = [1, accuracy_score, 'atm']
+                resp = {
+                    "type": 1,
+                    "accuracy_score": accuracy_score,
+                    "tag_result": 'atm'
+                }
                 return resp
         except Exception as e:
             print(f'Ha ocurrido un error\n {e}')

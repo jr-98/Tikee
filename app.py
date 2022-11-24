@@ -1,5 +1,4 @@
 from flask import Flask, request
-
 from atmRecognition import InstanceModel
 
 ALLOWED_EXT = set(['jpg', 'jpeg', 'png'])
@@ -23,4 +22,4 @@ def atm_recognition():
         file = request.files['file']
         if file and allowed_file(file.filename):
             response = InstanceModel.atmRecongnition(file)
-            return response
+            return f'{response}'

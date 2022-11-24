@@ -65,3 +65,4 @@ class InstanceModel:
             print(f'Ha ocurrido un error\n {e}')
         else:
             print('No ha ocurrido ningún error')
+

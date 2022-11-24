@@ -39,8 +39,8 @@ class InstanceModel:
             [testX, x, le] = InstanceModel.transformToTensor(X)
 
             # Fin load model
-            modelo = 'modelAtmRecognitionnLR1.h5'
-            pesos_modelo = 'modelAtmRecognitionPesosLR1.h5'
+            modelo = "./static/modelAtmRecognitionnLR1.h5"
+            pesos_modelo = "./static/modelAtmRecognitionPesosLR1.h5"
             atm = load_model(modelo)
             atm.load_weights(pesos_modelo)
             predIdxs = atm.predict(testX)
@@ -56,4 +56,3 @@ class InstanceModel:
             print(f'Ha ocurrido un error\n {e}')
         else:
             print('No ha ocurrido ningún error')
-

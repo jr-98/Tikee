@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 import { Box, Typography, Button, Grid, Divider } from '@mui/material';
 import { Link, NavLink as RouterLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -15,10 +16,11 @@ import RenderIconButton from 'src/components/Icon/IconButton';
 const Login = () => {
 
 	const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'onBlur' });
-	const { customOnKeyUp, isDisabledButton } = useFormData()
-	const { dataLogin, handleLogin, handleShowPassword, isShowPassword } = useLogin()
-	const { data: [dataResponse], loading } = dataLogin
-
+	const { customOnKeyUp, isDisabledButton } = useFormData();
+	const { dataLogin, handleLogin, handleShowPassword, isShowPassword } = useLogin();
+	const { data: [dataResponse], loading } = dataLogin;
+	const typeStyle = Math.floor(Math.random() * 2);
+	const typeStyleLogo = Math.floor(Math.random() * 2);
 	return (
 		<>
 			<Helmet>
@@ -29,7 +31,14 @@ const Login = () => {
 				display={'flex'}
 				flex='1 1 0%'
 				flexDirection={'column'}
-				bgcolor={colors.primary.lighter}>
+				bgcolor={colors.primary.lighter}
+				sx={{
+					backgroundImage: typeStyle === 1 ? 'url("/static/images/logos/login-bg.jpg")' : 'url("/static/images/logos/login-bg-1.png")',
+					backgroundSize: 'cover',
+					backgroundRepeat: 'no-repeat',
+					backgroundPosition: 'center',
+					backgroundColor: 'white !important',
+				}}>
 				<Box width={'100%'} display={'block'} flex='1 1 0%' padding={'20px'} height={'100%'}>
 					<Grid container height={'100%'}>
 						<Grid item xs={12} lg={6} display={'flex'} justifyContent={'center'} alignItems={'center'}>
@@ -144,24 +153,33 @@ const Login = () => {
 								</form>
 							</MDBox>
 						</Grid>
-						{/* <Grid item xs={0} lg={6} display={{ xs: 'none', lg: 'block' }}>
-							<MDBox
+						<Grid item xs={0} lg={6} display={{ xs: 'none', lg: 'block' }}>
+							<Grid alingItems='center' margin='auto'
+								sx={{
+									display: 'block',
+									alignItems: 'center',
+									padding: 8,
+									margin: 'auto',
+									height: '100%'
+								}}>
+								<img alt='imgLog' height='80%' width='80%' src={typeStyleLogo === 1 ? '/static/images/logos/tikee-logo-color.png' : '/static/images/logos/tikee-log-white.png'} />
+							</Grid>
+							{/* <MDBox
 								shadow='xl'
 								display='block'
 								alignItems='center'
-								bgColor='white'
 								p={5}
 								height={'100%'}
 								sx={{
-									// backgroundImage: 'url("/static/images/logos/login-bg-4.jpg")',
+									backgroundImage: 'url("/static/images/logos/login-bg-4.jpg")',
 									backgroundSize: 'contain',
 									backgroundRepeat: 'no-repeat',
 									backgroundPosition: 'center',
 									backgroundColor: 'white !important',
 									borderRadius: 5
 								}}>
-							</MDBox>
-						</Grid> */}
+							</MDBox> */}
+						</Grid>
 					</Grid>
 				</Box>
 			</Box>

@@ -1,10 +1,10 @@
 import { Box, alpha, lighten, useTheme } from '@mui/material';
-import PropTypes from 'prop-types';
+import { Outlet } from 'react-router-dom';
 
 import Sidebar from './Sidebar';
 import Header from './Header';
 
-const SidebarLayout = ({ children }) => {
+const SidebarLayout = () => {
   const theme = useTheme();
 
   return (
@@ -50,15 +50,13 @@ const SidebarLayout = ({ children }) => {
             }
           }}
         >
-          <Box display="block">{children}</Box>
+          <Box display="block">
+            <Outlet />
+          </Box>
         </Box>
       </Box>
     </>
   );
-};
-
-SidebarLayout.propTypes = {
-  children: PropTypes.node
 };
 
 export default SidebarLayout;

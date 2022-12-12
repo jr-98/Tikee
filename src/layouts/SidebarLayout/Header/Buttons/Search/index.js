@@ -1,4 +1,4 @@
-import { forwardRef, Ref, useState, ReactElement, ChangeEvent } from 'react';
+import { forwardRef, useState } from 'react';
 import {
   Avatar,
   Link,
@@ -12,17 +12,15 @@ import {
   ListItem,
   ListItemAvatar,
   TextField,
-  Theme,
   Tooltip,
   Typography,
   Dialog,
   DialogContent,
   DialogTitle,
   Slide,
-  Hidden
+  Hidden,
+  styled
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import { TransitionProps } from '@mui/material/transitions';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import FindInPageTwoToneIcon from '@mui/icons-material/FindInPageTwoTone';
 
@@ -107,7 +105,7 @@ function HeaderSearch() {
         <DialogTitleWrapper>
           <SearchInputWrapper
             value={searchValue}
-            autoFocus={true}
+            autoFocus
             onChange={handleSearchChange}
             InputProps={{
               startAdornment: (

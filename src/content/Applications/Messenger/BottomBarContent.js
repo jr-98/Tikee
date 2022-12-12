@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
+/* eslint-disable jsx-a11y/label-has-for */
 import {
   Avatar,
   Tooltip,

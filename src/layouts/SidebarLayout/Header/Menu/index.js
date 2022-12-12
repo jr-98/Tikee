@@ -8,8 +8,7 @@ import {
   styled
 } from '@mui/material';
 import { useRef, useState } from 'react';
-import Link from 'src/components/Link';
-
+import { NavLink } from 'react-router-dom';
 import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
 
 const ListWrapper = styled(Box)(
@@ -80,17 +79,15 @@ function HeaderMenu() {
       <ListWrapper
         sx={{
           display: {
-            xs: 'none',
-            md: 'block'
+            xs: 'none', md: 'block'
           }
-        }}
-      >
+        }}>
         <List disablePadding component={Box} display="flex">
           <ListItem
             classes={{ root: 'MuiListItem-indicators' }}
             button
-            component={Link}
-            href="/components/buttons"
+            component={NavLink}
+            to="/components/buttons"
           >
             <ListItemText
               primaryTypographyProps={{ noWrap: true }}
@@ -100,8 +97,8 @@ function HeaderMenu() {
           <ListItem
             classes={{ root: 'MuiListItem-indicators' }}
             button
-            component={Link}
-            href="/components/forms"
+            component={NavLink}
+            to="/components/forms"
           >
             <ListItemText
               primaryTypographyProps={{ noWrap: true }}
@@ -129,16 +126,16 @@ function HeaderMenu() {
         </List>
       </ListWrapper>
       <Menu anchorEl={ref.current} onClose={handleClose} open={isOpen}>
-        <MenuItem sx={{ px: 3 }} component={Link} href="/">
+        <MenuItem sx={{ px: 3 }} component={NavLink} to="/overview">
           Overview
         </MenuItem>
-        <MenuItem sx={{ px: 3 }} component={Link} href="/components/tabs">
+        <MenuItem sx={{ px: 3 }} component={NavLink} to="/components/tabs">
           Tabs
         </MenuItem>
-        <MenuItem sx={{ px: 3 }} component={Link} href="/components/cards">
+        <MenuItem sx={{ px: 3 }} component={NavLink} to="/components/cards">
           Cards
         </MenuItem>
-        <MenuItem sx={{ px: 3 }} component={Link} href="/components/modals">
+        <MenuItem sx={{ px: 3 }} component={NavLink} to="/components/modals">
           Modals
         </MenuItem>
       </Menu>

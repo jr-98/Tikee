@@ -1,16 +1,17 @@
 import PropTypes from 'prop-types';
+import { Outlet } from 'react-router-dom';
+
 import { Box } from '@mui/material';
 
 const BaseLayout = ({ children }) => {
   return (
     <Box
       sx={{
-        display: 'flex',
         flex: 1,
         height: '100%'
       }}
     >
-      {children}
+      {children || <Outlet />}
     </Box>
   );
 };

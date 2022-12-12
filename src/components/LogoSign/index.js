@@ -6,7 +6,7 @@ import {
   styled,
   useTheme
 } from '@mui/material';
-import Link from 'src/components/Link';
+import { Link } from 'react-router-dom';
 
 const LogoWrapper = styled(Link)(
   ({ theme }) => `
@@ -98,10 +98,10 @@ function Logo() {
 
   return (
     <TooltipWrapper
-      title="Tokyo Free White Next.js Javascript Admin Dashboard"
+      title="Tokyo Free White React Javascript Admin Dashboard"
       arrow
     >
-      <LogoWrapper href="/">
+      <LogoWrapper to="/overview">
         <Badge
           sx={{
             '.MuiBadge-badge': {
@@ -112,7 +112,7 @@ function Logo() {
           }}
           overlap="circular"
           color="success"
-          badgeContent="1.0"
+          badgeContent="2.0"
         >
           <LogoSignWrapper>
             <LogoSign>

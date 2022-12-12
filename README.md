@@ -1,21 +1,64 @@
-# UI para reportes de insidencias
-## Quick start
-1. Instalar los paquetes mediante el comando 
-```
-npm install
-```
-2. Para levantar el proyecto usar 
-```
-npm run dev
-```
-# Derechos de autor y referencias
-Tomado de [bloomui](https://bloomui.com), una plantilla base [Tokyo Free White Javascript Next.js Admin Dashboard](https://bloomui.com/product/tokyo-free-white-nextjs-javascript-material-ui-admin-dashboard/) 
- Tokyo Free White Next.js Javascript Dashboard is built using the latest industry standards and features a clean and premium design style, making use of colors and accents to improve the user experience for all included flows and pages.
+<p align="center">
+    <a href="https://bloomui.com" title="BloomUI.com">
+        <img src="https://bloomui.s3.us-east-2.amazonaws.com/tokyo-logo.png" alt="Tokyo Free White React Javascript Dashboard">
+    </a>
+</p>
+<h1 align="center">
+    <b>Tokyo Free White React Javascript Dashboard</b>
+    <br>
+    <a href="https://twitter.com/intent/tweet?url=https://bloomui.com&text=I like this React admin dashboard">
+        <img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" />
+    </a>
+</h1>
+<div align="center">
 
-It is powered by Next.js, Javascript and React and contains multiple components customized on top of Material-UI – which is one of the best UI components frameworks available.
-We keep all dependencies updated to their latest stable versions. Each time we release an updated version you will be notified via the email you used to initially download the template.
+![version](https://img.shields.io/badge/version-2.0.0-blue.svg)
+![license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-To discover all the features that this free React admin template has to offer, we suggest visiting the live preview we’ve set up.
+<a href="https://bloomui.com/product/tokyo-free-white-react-javascript-material-ui-admin-dashboard/"><img src="https://bloomui.s3.us-east-2.amazonaws.com/tokyo-free-white-react-javascript-material-ui-admin-dashboard.jpg" /></a>
+</div>
 
-There is also a free Javascript version available, if that is what you prefer working with.
+<a href="https://bloomui.com/product/tokyo-free-white-react-javascript-material-ui-admin-dashboard/"><h3>Free React Javascript Admin Dashboard Template built with Material-UI</h3></a>
+<p>
+    If you prefer working with Javascript instead of Typescript then this admin template is for you. Tokyo Free White Javascript Admin Dashboard Template is powered by React and Material-UI which is one of the most popular frontend frameworks available today.
+</p>
+<p>
+You can use this admin dashboard to build whatever you want, as we released it under a MIT License, free and open source.
+</p>
+<p>
+We keep all NPM dependencies up to date and do regular updates and improvements.
+</p>
+<p>
+Check out the live preview we’ve set up to see all the included features, like dashboard components, customized Material-UI cards and even a Messenger chat application.
+</p>
+<p>
+You can easily change the styles and colors schemes just by modifying a single variables file.
+</p>
 
+---
+<h3>Updrade to PRO</h3>
+
+<p>If you're looking for more features like translations, complex user flows, redux examples and more,  we recommend taking a look at the premium version (Tokyo White Javascript Dashboard) on <a href="https://bloomui.com">bloomui.com</a></p>
+
+---
+
+<h2>
+    Quick Start
+</h2>
+<ol>
+    <li>Make sure you have the latest stable versions for Node.js and NPM installed</li>
+    <li>Clone repository: <code>git clone https://github.com/bloomui/tokyo-free-white-react-admin-dashboard-js.git</code></li>
+    <li>Install dependencies: Run <code>npm install</code> inside the project folder</li>
+    <li>Start dev server: After the install finishes, run <code>npm run start</code>. A browser window will open on http://localhost:3000 where you''ll see the live preview</li>
+</ol>
+
+---
+
+<h2>
+    Technical Support
+</h2>
+<p>
+    You can open a support ticket by sending an email here: <a href="mailto:support@bloomui.freshdesk.com" title="Open Support Ticket">
+        support@bloomui.freshdesk.com
+    </a>
+</p>

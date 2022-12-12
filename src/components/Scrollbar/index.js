@@ -9,7 +9,6 @@ const Scrollbar = ({ className, children, ...rest }) => {
   return (
     <Scrollbars
       autoHide
-      universal
       renderThumbVertical={() => {
         return (
           <Box

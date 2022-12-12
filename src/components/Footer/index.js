@@ -18,7 +18,7 @@ function Footer() {
       >
         <Box>
           <Typography variant="subtitle1">
-            &copy; 2022 - Tokyo Free White Next.js Javascript Admin Dashboard
+            &copy; 2022 - Tokyo Free WHITE React Javascript Admin Dashboard
           </Typography>
         </Box>
         <Typography

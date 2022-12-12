@@ -93,7 +93,7 @@ function TopBarContent() {
 
   const [expanded, setExpanded] = useState('section1');
 
-  const handleChange = (section) => (_event, isExpanded) => {
+  const handleChange = (section) => (event, isExpanded) => {
     setExpanded(isExpanded ? section : false);
   };
 

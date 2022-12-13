@@ -1,9 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { Navigate } from 'react-router-dom';
-
 import SidebarLayout from 'src/layouts/SidebarLayout';
 import BaseLayout from 'src/layouts/BaseLayout';
-
 import SuspenseLoader from 'src/components/SuspenseLoader';
 import AuthRote from './AuthRoute';
 
@@ -17,13 +15,13 @@ const Loader = (Component) => (props) =>
 const Login = Loader(lazy(() => import('src/content/pages/Login')))
 // Dashboards
 
-const Crypto = Loader(lazy(() => import('src/content/dashboards/Crypto')));
+const Dashboard = Loader(lazy(() => import('src/content/dashboards/Crypto')));
 
 // Applications
 
-const Messenger = Loader(
-  lazy(() => import('src/content/applications/Messenger'))
-);
+// const Messenger = Loader(
+//   lazy(() => import('src/content/applications/Messenger'))
+// );
 const Transactions = Loader(
   lazy(() => import('src/content/applications/Transactions'))
 );
@@ -79,8 +77,11 @@ const routes = [
     element: <BaseLayout />,
     children: [
       {
-        path: '/',
-        element: <AuthRote> <Login /></AuthRote>
+        path: 'login',
+        element: <AuthRote><Login /></AuthRote>
+      }, {
+        path: '',
+        element: <Navigate to="login" replace />
       },
       {
         path: 'status',
@@ -114,21 +115,17 @@ const routes = [
     ]
   },
   {
-    path: 'dashboards',
+    path: 'dashboard',
     element: <SidebarLayout />,
     children: [
       {
         path: '',
-        element: <Navigate to="tasks" replace />
+        element: <Dashboard />
       },
       {
-        path: 'crypto',
-        element: <Crypto />
+        path: '',
+        element: <Navigate to="dashboard" replace />
       },
-      {
-        path: 'messenger',
-        element: <Messenger />
-      }
     ]
   },
   {

@@ -8,7 +8,7 @@ export const useLogin = () => {
 
 	const signIn = useSignIn()
 	const navigate = useNavigate()
-	const [dataLogin, setDataLogin] = useState({ data: [], loading: false })
+	const [dataLogin, setDataLogin] = useState({ dataResponse: [], loading: false })
 	const { setErrorField, setClearField } = helpFormData()
 
 	const [isShowPassword, setIsShowPassword] = useState(false)
@@ -17,42 +17,42 @@ export const useLogin = () => {
 		setIsShowPassword(!isShowPassword)
 	}
 
-	const handleLogin = async ({ userName, password }) => {
-		setDataLogin({ data: [], loading: true })
+	const handleLogin = async ({ username, password }) => {
+		setDataLogin({ dataResponse: [], loading: true })
 		const responseLogin = await fetchDataPromise({
-			URLApi: 'http://127.0.0.1:8000/login',
+			URLApi: 'http://localhost:3000/login',
 			additionalData: {
-				userName,
+				username,
 				password
 			}
 		});
-		if (responseLogin?.results[0].status === 200) {
-
+		if (responseLogin.status === 200) {
 			setClearField()
-			setDataLogin({ data: responseLogin.results, loading: false })
-
+			setDataLogin({ dataResponse: responseLogin.data[0], loading: false })
 			const responseEntity = await fetchDataPromise({
-				URLApi: 'http://127.0.0.1:8000/get_entity',
-				dataUser: responseLogin?.results[0]
+				URLApi: 'http://localhost:3000/entity',
+				additionalData: {
+					id_entity: responseLogin.data[0].id_entidad
+				}
 			});
-			if (responseEntity?.results[0].status === 200) {
+			if (responseEntity?.status === 200) {
 				if (signIn(
 					{
-						token: responseLogin?.results[0].dataResponse[0].access_token,
+						token: responseLogin?.data[0].contrasenia,
 						expiresIn: 10,
-						tokenType: responseLogin?.results[0].dataResponse[0].token_type,
-						authState: responseEntity?.results[0].dataResponse[0].dataEntity
+						tokenType: 'Bearer',
+						authState: responseEntity?.data[0].dataEntity
 					}
 				)) {
 					navigate('/dashboard')
 				}
 			} else {
 				setErrorField()
-				setDataLogin({ data: responseEntity.results, loading: false })
+				setDataLogin({ dataResponse: responseEntity.results, loading: false })
 			}
 		} else {
 			setErrorField()
-			setDataLogin({ data: responseLogin.results, loading: false })
+			setDataLogin({ dataResponse: responseLogin.results, loading: false })
 		}
 	}
 

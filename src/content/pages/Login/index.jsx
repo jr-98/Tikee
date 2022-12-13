@@ -18,9 +18,8 @@ const Login = () => {
 	const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'onBlur' });
 	const { customOnKeyUp, isDisabledButton } = useFormData();
 	const { dataLogin, handleLogin, handleShowPassword, isShowPassword } = useLogin();
-	const { data: [dataResponse], loading } = dataLogin;
-	const typeStyle = Math.floor(Math.random() * 2);
-	const typeStyleLogo = Math.floor(Math.random() * 2);
+	const { dataResponse, loading } = dataLogin;
+
 	return (
 		<>
 			<Helmet>
@@ -33,7 +32,7 @@ const Login = () => {
 				flexDirection={'column'}
 				bgcolor={colors.primary.lighter}
 				sx={{
-					backgroundImage: typeStyle === 1 ? 'url("/static/images/logos/login-bg.jpg")' : 'url("/static/images/logos/login-bg-1.png")',
+					backgroundImage: 'url("/static/images/logos/login-bg-1.png")',
 					backgroundSize: 'cover',
 					backgroundRepeat: 'no-repeat',
 					backgroundPosition: 'center',
@@ -58,7 +57,7 @@ const Login = () => {
 									autoComplete='off'
 									onSubmit={
 										handleSubmit(data => {
-											handleLogin({ userName: data['user-name'], password: data['password'] })
+											handleLogin({ username: data['user-name'], password: data['password'] })
 										})
 									}
 									style={{
@@ -105,7 +104,7 @@ const Login = () => {
 													icon={isShowPassword ? 'visibility' : 'visibilityOff'} />
 											} />
 										{
-											(dataResponse && dataResponse?.status !== 200)
+											(dataResponse.length > 0 && dataResponse?.status !== 200)
 												?
 												<Grid item>
 													<LabelError text={dataResponse?.info_response} color={'red'} />
@@ -154,7 +153,7 @@ const Login = () => {
 							</MDBox>
 						</Grid>
 						<Grid item xs={0} lg={6} display={{ xs: 'none', lg: 'block' }}>
-							<Grid alingItems='center' margin='auto'
+							<Grid margin='auto'
 								sx={{
 									display: 'block',
 									alignItems: 'center',
@@ -162,23 +161,8 @@ const Login = () => {
 									margin: 'auto',
 									height: '100%'
 								}}>
-								<img alt='imgLog' height='80%' width='80%' src={typeStyleLogo === 1 ? '/static/images/logos/tikee-logo-color.png' : '/static/images/logos/tikee-log-white.png'} />
+								<img alt='imgLog' height='80%' width='80%' src={'/static/images/logos/tikee-log-white.png'} />
 							</Grid>
-							{/* <MDBox
-								shadow='xl'
-								display='block'
-								alignItems='center'
-								p={5}
-								height={'100%'}
-								sx={{
-									backgroundImage: 'url("/static/images/logos/login-bg-4.jpg")',
-									backgroundSize: 'contain',
-									backgroundRepeat: 'no-repeat',
-									backgroundPosition: 'center',
-									backgroundColor: 'white !important',
-									borderRadius: 5
-								}}>
-							</MDBox> */}
 						</Grid>
 					</Grid>
 				</Box>
